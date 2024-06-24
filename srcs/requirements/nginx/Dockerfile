@@ -15,4 +15,4 @@ RUN mkdir -p /var/www/wordpress
 
 RUN chown -R www-data:www-data /var/www/wordpress
 
-CMD [ "nginx", "-g", "daemon off" ]
+CMD [ "nginx", "-g", "daemon off;" ]
