@@ -11,24 +11,9 @@ up: build
 down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
-stop:
-	docker-compose -f ./srcs/docker-compose.yml stop
-
-start:
-	docker-compose -f ./srcs/docker-compose.yml start
-
 build:
 	clear
 	docker-compose -f ./srcs/docker-compose.yml build
-
-ng:
-	@docker exec -it nginx
-
-mdb:
-	@docker exec -it mariadb
-
-wp:
-	@docker exec -it wordpress
 
 clean:
 	@docker stop $$(docker ps -qa) || true
@@ -36,11 +21,10 @@ clean:
 	@docker rmi -f $$(docker images -qa) || true
 	@docker volume rm $$(docker volume ls -q) || true
 	@docker network rm $$(docker network ls -q) || true
-	@sudo rm -rf /home/dateixei/data || true
 
 re: clean up
 
 prune: clean
 	@docker system prune -a --volumes -f
 
-.PHONY: all up down stop start build ng mdb wp clean re prune
+.PHONY: all up down build clean re prune
