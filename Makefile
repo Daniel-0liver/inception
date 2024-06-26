@@ -15,8 +15,7 @@ build:
 	clear
 	docker-compose -f ./srcs/docker-compose.yml build
 
-clean:
-	@docker stop $$(docker ps -qa) || true
+clean: down
 	@docker rm $$(docker ps -qa) || true
 	@docker rmi -f $$(docker images -qa) || true
 	@docker volume rm $$(docker volume ls -q) || true
